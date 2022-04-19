@@ -1,6 +1,6 @@
 pragma solidity >0.4.16;
 
-contract UnsecureGeneralWalletCompatibleToken2 {
+contract UnsecureGeneralWalletCompatibleToken3 {
 
     string public name;
     string public symbol;
