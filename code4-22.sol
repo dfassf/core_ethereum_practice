@@ -9,7 +9,7 @@ contract GeneralWalletCompatibleToken {
 
     event Transfer(address _from, address _to, uint _value);
 
-    constructor(string _name, string _symbol, uint8 decimalUnits, uint256 initialSupply) public {
+    constructor(string memory _name, string memory _symbol, uint8 decimalUnits, uint256 initialSupply) {
         name = _name;
         symbol = _symbol;
         decimals = decimalUnits;
@@ -20,6 +20,6 @@ contract GeneralWalletCompatibleToken {
         balanceOf[msg.sender] -= _value;
         balanceOf[_to] += _value;
         emit Transfer(msg.sender, _to, _value);
-        
+
     }
 }
