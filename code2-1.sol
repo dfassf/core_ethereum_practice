@@ -1,6 +1,6 @@
 // pragma solidity >0.4.15 <=0.8.12;
 
-pragma solidity >0.4.15;
+pragma solidity ^0.4.15;
 
 contract MyToken {
     mapping(address => uint256) public balanceOf;
