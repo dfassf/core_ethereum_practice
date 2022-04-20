@@ -4,3 +4,7 @@ Data location must be "storage" or "memory" for constructor parameter, but none 
 
 Visibility for constructor is ignored. If you want the contract to be non-deployable, making it "abstract" is sufficient.
 > public 삭제
+
+#4-29
+totalSupply() expected { but got constant
+allowance 함수 기능
