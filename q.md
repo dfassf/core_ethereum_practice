@@ -7,4 +7,4 @@ Visibility for constructor is ignored. If you want the contract to be non-deploy
 
 #4-29
 totalSupply() expected { but got constant
-allowance 함수 기능
+approve 함수 기능
