@@ -1,7 +1,7 @@
 contract ERC20 {
     // 오류가 남
     // 현재까지 공급된 총 토큰 수
-    function totalSupply() constant returns (uint totalSupply);
+    function totalSupply() constan returns (uint totalSupply);
     // 어카운트의 잔고
     function balanceOf(address _owner) constant returns (uint balance); 
     // 송금
