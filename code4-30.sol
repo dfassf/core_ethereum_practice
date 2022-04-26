@@ -1,6 +1,7 @@
 pragma solidity >0.4.16;
 
 interface token {
+    // 컨트랙트 간 상속 구조 선언, 블록체인 상 컨트랙트 주소에서 컨트랙트 인터페이스 생성
     function transfer(address receiver, uint amount);
 }
 
