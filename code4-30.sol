@@ -25,19 +25,20 @@ contract CrowdFund{
     event GoalReached(address beneficiaryAddress, uint amountRaisedValue);
     event FundTransfer(address backer, uint amount, bool isContribution);
 
-    function CrowdFund(
+    constructor(
         address ifSuccessfulSendTo,
         uint fundingGoalInEthers,
         uint durationInMinutes,
-        uint etherCostoOfEachToken,
+        uint etherCostOfEachToken,
         address addressOfTokenUsedAsReward
-    ) public {
+    ) {
         beneficiary = ifSuccessfulSendTo;
         // 이 아래 것들이 라이브러리라는건가?
         fundingGoal = fundingGoalInEthers * 1 ether;
-        deadline = now + durationInMinutes * 1 minutes;
+        // now는 이제 쓰지 않음.
+        deadline = block.timestamp + durationInMinutes * 1 minutes;
         price = etherCostOfEachToken * 1 ether;
-        tokenReward = token(addressofTokenUsedAsReward);
+        tokenReward = token(addressOfTokenUsedAsReward);
     }
     //폴백함수. 컨트랙트 하나에 딱 하나만 정의 가능
     // 매개변수 선언 x 값 반환 x
@@ -54,14 +55,15 @@ contract CrowdFund{
     // function () external payable { // 따라서 이 부분은
     fallback () external payable{ // 으로 수정
         require(!crowdsaleClosed);
-        uint amount = msg.value;
+        uint amount = msg.value; // wei단위.
         balanceOf[msg.sender] += amount;
         amountRaised += amount;
         tokenReward.transfer(msg.sender, amount / price);
         emit FundTransfer(msg.sender, amount, true);
     }
-
-    modifier afterDeadline() { if(now >= deadline) _;}
+    
+    // 여기도 마찬가지로 now 교체
+    modifier afterDeadline() { if(block.timestamp >= deadline) _;}
 
     function checkGoalReached() external afterDeadline {
         if(amountRaised >= fundingGoal) {
