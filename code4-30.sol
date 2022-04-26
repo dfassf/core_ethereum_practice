@@ -11,6 +11,12 @@ contract CrowdFund{
     uint public amountRaised;
     uint public deadline;
     uint public price;
+    // tokenReward를 token의 인터페이스로 선언
+    // * 인터페이스 유의사항
+    // 함수 구현 x
+    // 다른 컨트랙트나 인터페이스 상속 x
+    // 생성자, 상태변수 정의 x
+    // 스트럭트와 이넘 x -> 지금은 되는 듯?
     token public tokenReward;
     mapping(address => uint256) public balanceOf;
     bool public fundingGoalReached = false;
@@ -27,6 +33,7 @@ contract CrowdFund{
         address addressOfTokenUsedAsReward
     ) public {
         beneficiary = ifSuccessfulSendTo;
+        // 이 아래 것들이 라이브러리라는건가?
         fundingGoal = fundingGoalInEthers * 1 ether;
         deadline = now + durationInMinutes * 1 minutes;
         price = etherCostOfEachToken * 1 ether;
@@ -67,7 +74,7 @@ contract CrowdFund{
         if(fundingGoalReached && beneficiary == msg.sender) {
             if(beneficiary.send(amountRaised)) {
                 emit FundTransfer(beneficiary, amountRaised, false);
-            } eelse {
+            } else {
                 fundingGoalReached = false;
             }
         }
