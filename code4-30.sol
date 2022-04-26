@@ -61,9 +61,13 @@ contract CrowdFund{
         tokenReward.transfer(msg.sender, amount / price);
         emit FundTransfer(msg.sender, amount, true);
     }
-    
+
     // 여기도 마찬가지로 now 교체
-    modifier afterDeadline() { if(block.timestamp >= deadline) _;}
+    modifier afterDeadline() { 
+        if(block.timestamp >= deadline) 
+        _; // modifier 내 구문들을 다 실행하고 나서 modifier가 선언된 함수의 내용 실행
+        // 중복되는 부분을 줄이기 위함
+    }
 
     function checkGoalReached() external afterDeadline {
         if(amountRaised >= fundingGoal) {
