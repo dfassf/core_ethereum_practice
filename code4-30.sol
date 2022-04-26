@@ -39,8 +39,20 @@ contract CrowdFund{
         price = etherCostOfEachToken * 1 ether;
         tokenReward = token(addressofTokenUsedAsReward);
     }
+    //폴백함수. 컨트랙트 하나에 딱 하나만 정의 가능
+    // 매개변수 선언 x 값 반환 x
+    // 2300가스만 사용
+    // external payable 필수
+    // 스마트컨트랙트가 이더를 받을 수 있게
+    // 받고 나서 어떠한 액션을 취하는 것이 가능
+    // call 함수로 존재하지 않는 함수가 호출됐을 때 어떠한 액션을 취함
 
-    function () external payable {
+    // 0.6 전후로 사용법이 바뀜(따라서 책의 코드는 옛날 것)
+    // receive() external payable { : 순수하게 이더만 받을 때 작동
+    // fallback() external payable-선택 { : 기본형태이나 payable 추가하면 이더 받고 나서도 무언가 가능
+
+    // function () external payable { // 따라서 이 부분은
+    fallback () external payable{ // 으로 수정
         require(!crowdsaleClosed);
         uint amount = msg.value;
         balanceOf[msg.sender] += amount;
