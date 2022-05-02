@@ -8,3 +8,8 @@ Visibility for constructor is ignored. If you want the contract to be non-deploy
 #4-29
 totalSupply() expected { but got constant
 approve 함수 기능
+
+#4-31
+Using ".value(...)" is deprecated. Use "{value: ...}" instead.
+Wrong argument count for function call: 0 arguments given but expected 1. This function requires a single bytes argument. Use "" as argument to provide empty calldata.
+Operator == not compatible with types tuple(bool,bytes memory) and bool

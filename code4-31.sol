@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.18; 
 
 contract DaoFund {
     mapping (address => uint) balanceOf;
@@ -9,14 +9,22 @@ contract DaoFund {
         return balanceOf[user];
     }
 
-    funciton addToBalance() external payable {
+    function addToBalance() external payable {
         balanceOf[msg.sender] = balanceOf[msg.sender] + msg.value;
     }
 
     function withdrawBalance() external {
         uint amountToWithdraw = balanceOf[msg.sender];
+/*
 
-        if(msg.sender.call.value(amountToWithdraw) () == false) {
+The following syntax is deprecated: 
+f.gas(...)(), f.value(...)() and (new C).value(...)().  
+
+Replace these calls by
+f{gas: ..., value: ...}() and (new C){value: ...}(). 
+
+ */
+        if(msg.sender.call.value(amountToWithdraw)() == false) { // 0.8 에선 오류..
             revert();
         }
         balanceOf[msg.sender] = 0;
