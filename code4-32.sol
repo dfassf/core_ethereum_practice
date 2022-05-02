@@ -21,7 +21,7 @@ contract DaoFundAttacker {
             } else emit WithdrawBalance("Failed in fallback", gasleft());
         }
         else {
-            emit WithdrawBalance("All GoalAmount is withdrawn", gasleft())
+            emit WithdrawBalance("All GoalAmount is withdrawn", gasleft());
         }
     }
 
