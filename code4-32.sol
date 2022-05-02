@@ -42,3 +42,5 @@ contract DaoFundAttacker {
         else emit WithdrawBalance("Succeeded in withdraw", gasleft());
     }
 }
+
+//거래가 자꾸 실패, 왜 책이랑 다르니
