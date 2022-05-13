@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-30
 pragma solidity ^0.8.1; 
 
 contract DaoFund {
@@ -15,8 +16,6 @@ contract DaoFund {
 
     function withdrawBalance() external {
             uint amountToWithdraw = balanceOf[msg.sender];
-
-            // if((msg.sender.call{value: amountToWithdraw}("")){
             (bool success, bytes memory data) = msg.sender.call{value: amountToWithdraw}("");
             if(!success){
                 revert();
