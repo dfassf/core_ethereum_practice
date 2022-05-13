@@ -48,4 +48,5 @@ contract DaoFundAttacker {
     }
 }
 
+
 //거래가 자꾸 실패, 왜 책이랑 다르니
